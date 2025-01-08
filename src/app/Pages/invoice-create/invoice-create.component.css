@@ -1,0 +1,94 @@
+.invoice-container {
+    padding: 20px;
+    width:700px;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-table th, .invoice-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #eee;
+  }
+  
+  .invoice-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .invoice-table td {
+    vertical-align: top;
+  }
+  
+  .invoice-table td input, .invoice-table td select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    border:none;
+  }
+  
+  /* Disable state for buttons */
+  button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .invalid {
+    /*border-color: red;*/
+    border-width: 1px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  button[type="button"].remove-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  button[type="button"].remove-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  .add-item-btn {
+    background-color: #007bff;
+    color: white;
+    float: right;
+  }
+  
+  .add-item-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .save-invoice-btn {
+    background-color: #28a745;
+    color: white;
+    float:right;
+  }
+  
+  .save-invoice-btn:hover {
+    background-color: #218838;
+  }
+
+  input[name="transactionDate"]{
+    padding:5px;
+    font-size: 14px;
+  }
+  

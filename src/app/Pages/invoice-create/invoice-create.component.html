@@ -1,0 +1,107 @@
+<div class="invoice-container">
+    <h2>Customer Invoice</h2>
+  
+    <form #invoiceForm="ngForm" (ngSubmit)="saveInvoice()">
+        <div style="text-align: right; padding:10px 0 20px 0">
+            <label for="transactionDate" class="form-label">Invoice Date : </label>
+            <input name="transactionDate" type="date" ng-model="date"/>
+        </div>
+      <table class="invoice-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Discount (%)</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of invoiceItems; let i = index">
+            <td>
+              <select id="product-{{i}}" [(ngModel)]="item.product" name="product-{{i}}" (change)="setProductPrice(i)" required>
+                <option value="" disabled>Select Product</option>
+                <option *ngFor="let product of products" [value]="product.name">{{ product.name }}</option>
+              </select>
+            </td>
+
+            <td>
+              <input
+                id="price-{{i}}"
+                type="text"
+                [(ngModel)]="item.price"
+                name="price-{{i}}"
+                required
+                disabled
+                [ngClass]="{'invalid': !isValidNumber(item.price)}"
+                placeholder=""
+                (change)="setLineItemTotal(i)"
+              />
+              <div *ngIf="item.price && !isValidNumber(item.price)" class="error">
+                Please enter a valid amount for price.
+              </div>
+            </td>
+  
+            <td>
+              <input
+                id="quantity-{{i}}"
+                type="text"
+                [(ngModel)]="item.quantity"
+                name="quantity-{{i}}"
+                required
+                [ngClass]="{'invalid': !isValidNumber(item.quantity)}"
+                placeholder="Enter quantity"
+                (change)="setLineItemTotal(i)"
+              />
+              <div *ngIf="item.quantity && !isValidNumber(item.quantity)" class="error">
+                Please enter a valid number for quantity.
+              </div>
+            </td>
+  
+            <td>
+              <input
+                id="discount-{{i}}"
+                type="text"
+                [(ngModel)]="item.discount"
+                name="discount-{{i}}"
+                placeholder="Enter discount"
+                (change)="setLineItemTotal(i)"
+              />
+              <div *ngIf="item.discount && !isValidNumber(item.discount)" class="error">
+                Please enter a valid number for discount.
+              </div>
+            </td>
+
+            <td>
+                <input
+                  id="amount-{{i}}"
+                  type="text"
+                  [(ngModel)]="item.amount"
+                  name="amount-{{i}}"
+                  required
+                  disabled
+                  [ngClass]="{'invalid': !isValidNumber(item.amount)}"
+                  placeholder=""
+                />
+                <div *ngIf="item.amount && !isValidNumber(item.amount)" class="error">
+                  Please enter a valid value for price.
+                </div>
+              </td>
+  
+            <td style="text-align: right;">
+              <button type="button" (click)="removeItem(i)" class="remove-btn">Remove</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6" style="text-align: right; font-weight: 500;">
+                <label for="totalAmount" class="form-label">Total : {{ total_amount}}</label>
+            </td> 
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" [disabled]="invoiceForm.invalid" class="save-invoice-btn">Save Invoice</button>
+      <button type="button" (click)="addItem()" class="add-item-btn">Add line item</button>
+    </form>
+  </div>
+  
