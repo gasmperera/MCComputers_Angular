@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomerInvoiceComponent } from './Pages/customer-invoice/customer-invoice.component';
-import { ProductListComponent } from './Pages/Common/product-list/product-list.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -15,8 +13,6 @@ import { InvoiceCreateComponent } from './Pages/invoice-create/invoice-create.co
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerInvoiceComponent,
-    ProductListComponent,
     InvoiceCreateComponent,
   ],
   imports: [
