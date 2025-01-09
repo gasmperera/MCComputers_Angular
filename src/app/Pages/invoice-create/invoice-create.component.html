@@ -20,9 +20,9 @@
         <tbody>
           <tr *ngFor="let item of invoiceItems; let i = index">
             <td>
-              <select id="product-{{i}}" [(ngModel)]="item.product" name="product-{{i}}" (change)="setProductPrice(i)" required>
+              <select id="product-{{i}}" [(ngModel)]="item.product_id" name="product-{{i}}" (change)="setProductPrice(i)" required>
                 <option value="" disabled>Select Product</option>
-                <option *ngFor="let product of products" [value]="product.name">{{ product.name }}</option>
+                <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
               </select>
             </td>
 
