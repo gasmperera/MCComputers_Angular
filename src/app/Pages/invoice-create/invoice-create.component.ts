@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import{UserServiceService} from './../Services/user-service.service'
 
 @Component({
   selector: 'app-invoice-create',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class InvoiceCreateComponent {
 
+  constructor(private userServices: UserServiceService) { }
 
   invoiceItems = [
     { 
@@ -64,7 +66,7 @@ export class InvoiceCreateComponent {
   // Set product price based on selected product
   setProductPrice(index: number) {
     const selectedProduct = this.products.find(
-      product => product.id === this.invoiceItems[index].product_id
+      product => product.id.toString() === this.invoiceItems[index].product_id
     );
     if (selectedProduct) {
       this.invoiceItems[index].price = selectedProduct.price.toString();
@@ -90,8 +92,21 @@ export class InvoiceCreateComponent {
   }  
 
   saveInvoice() {
+    let invoiceItemsDTO = [];
+    invoiceItemsDTO=this.invoiceItems.map(item => {return {ProductId:item.product_id,Quantity:item.quantity,Price: item.price,Discount: item.discount}})
     console.log('Invoice Saved', this.invoiceItems);
-    // Perform the save action here, like sending data to an API
+   // this.userServices.postPurchaseData(invoiceItemsDTO);
+   this.userServices.postPurchaseData(invoiceItemsDTO).subscribe({
+    next: (response) => {
+      console.log('Invoice created successfully:', response);     
+    },
+    error: (error) => {
+      console.error('Error creating invoice:', error);
+    },
+    complete: () => {
+      console.log('API call completed.');
+    }
+  });
   }
 
  
