@@ -10,7 +10,7 @@ export class InvoiceCreateComponent {
 
   invoiceItems = [
     { 
-      product: '', 
+      product_id: '', 
       price:'', 
       quantity: '', 
       discount: '', 
@@ -47,7 +47,7 @@ export class InvoiceCreateComponent {
   addItem() {
     this.invoiceItems.push(
       {
-        product: '', 
+        product_id: '', 
         price: '', 
         quantity: '', 
         discount: '', 
@@ -64,7 +64,7 @@ export class InvoiceCreateComponent {
   // Set product price based on selected product
   setProductPrice(index: number) {
     const selectedProduct = this.products.find(
-      product => product.name === this.invoiceItems[index].product
+      product => product.id === this.invoiceItems[index].product_id
     );
     if (selectedProduct) {
       this.invoiceItems[index].price = selectedProduct.price.toString();
